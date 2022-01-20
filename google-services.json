@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236099922448",
+    "project_id": "firstapp-f6e0b",
+    "storage_bucket": "firstapp-f6e0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236099922448:android:06cb77afa2a3df172e7895",
+        "android_client_info": {
+          "package_name": "com.ouriel.firstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236099922448-lcsqopmb5s34uvkacq9d2ndto64ktpcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-ZsMBNq38x_1yvcZuw2oNQzA-7yGYJiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236099922448-lcsqopmb5s34uvkacq9d2ndto64ktpcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
