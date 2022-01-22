@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "firstApp",
-    "slug": "firstApp",
+    "name": "todolist",
+    "slug": "todolist",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -37,7 +37,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.ouriel.firstapp",
+      "package": "com.ouriel.todolist",
       "versionCode": 1,
       "googleServicesFile": "./google-services.json"
     },

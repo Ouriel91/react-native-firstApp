@@ -1,15 +1,18 @@
 import React , {useState,useEffect} from 'react';
-import { StyleSheet ,Text, View, Button, Image} from 'react-native';
+import { StyleSheet ,Text, View, Button, Image ,Alert} from 'react-native';
 import CustomButton from '../utils/CustomButton';
 import { Camera } from 'expo-camera';
+import {useSelector, useDispatch} from 'react-redux'
+import { setTasks } from '../redux/actions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-const MyCamera = () => {
+const MyCamera = ({navigation, route}) => {
 
     const [hasPermission, setHasPermission] = useState(null);
     const [camera, setCamera] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
-    const [image, setImage] = useState(null);
+    const { tasks } = useSelector(state => state.taskReducer);
+    const dispatch = useDispatch()
 
     //camera permissions
     useEffect(() => {
@@ -26,10 +29,26 @@ const MyCamera = () => {
         return <Text>No access to camera</Text>;
     }
 
-    const takePicture = async () => {
+    const captureHandler = async () => {
         if(camera){
             const data = await camera.takePictureAsync(null)
-            setImage(data.uri)
+            const path = data.uri
+            updateTask(route.params.id, path)
+        }
+    }
+
+    const updateTask = (id, path) => {
+        const index = tasks.findIndex(task => task.ID === id);
+        if (index > -1) {
+            let newTasks = [...tasks];
+            newTasks[index].Image = path;
+            AsyncStorage.setItem('Tasks', JSON.stringify(newTasks))
+                .then(() => {
+                    dispatch(setTasks(newTasks));
+                    Alert.alert('Success!', 'Task image is saved.');
+                    navigation.goBack();
+                })
+                .catch(err => console.log(err))
         }
     }
 
@@ -52,8 +71,7 @@ const MyCamera = () => {
                     )
                 }}>
             </Button>
-            <Button title="Take Picture" onPress={() => takePicture()} />
-            {image && <Image source={{uri: image}} style={{flex: 1}}/>}
+            <Button title="Take Picture" onPress={() => captureHandler()} />
     </View>
     )
 }
